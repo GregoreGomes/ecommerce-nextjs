@@ -1,18 +1,8 @@
-"use client";
-
-import Link from "next/link";
-import { Button } from "@material-tailwind/react";
-
-
+ 
 export default function Login() {
   return (
-    <>
-    <div>
-      <h1>pagina de login</h1>
-      <Link href={'/'}>
-        <Button placeholder={'teste'}>Voltar para a home</Button>
-      </Link>
+    <div className="w-3/6 flex justify-center items-center h-screen">
+      
     </div>
-    </>
   );
 }
