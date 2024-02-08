@@ -2,6 +2,8 @@ import { useState, useCallback } from 'react';
 
 interface fetchProps {
   url: string;
+  method: 'GET' | 'POST';
+  body?: any;
 }
 
 interface FetchResult {
@@ -13,16 +15,28 @@ const useFetch = () => {
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState<Error | null>(null);
 
-  const request = useCallback(async ({ url }: fetchProps): Promise<FetchResult> => {
+  const request = useCallback(async ({ url, method, body }: fetchProps): Promise<FetchResult> => {
     let response: Response | null = null;
     let json: any;
 
     try {
       setError(null);
-      response = await fetch(url);
-      json = await response.json();
-      if (!response.ok) {
-        throw new Error(json?.message || 'Failed to fetch data');
+      if (method === 'GET') {
+        response = await fetch(url);
+      } else if (method === 'POST') {
+        response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        });
+      }
+      if(response) {
+        json = await response.json();
+        if (!response.ok) {
+          throw new Error(json?.message || 'Failed to fetch data');
+        }
       }
     } catch (err) {
       json = null;

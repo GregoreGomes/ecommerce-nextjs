@@ -10,7 +10,8 @@ export default function Admin() {
 
   useEffect(() => {
     request({
-      url: 'https://commerce-api-mte6.onrender.com'
+      url: 'https://commerce-api-mte6.onrender.com',
+      method: 'GET'
     });
   }, [request]);
 
