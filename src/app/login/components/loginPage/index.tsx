@@ -1,7 +1,19 @@
 "use client";
 import React from 'react';
+import useFetch from "@/useHook/UseFetch";
+import { useEffect } from "react";
 
 export default function LoginPage() {
+
+  const { data, error, request } = useFetch();
+
+  useEffect(() => {
+    request({
+      url: 'https://commerce-api-mte6.onrender.com'
+    });
+  }, [request]);
+
+  console.log(data)
   return (
     <div className="flex">
       <div className="w-full  bg-slate-100 flex items-center justify-center">

@@ -18,13 +18,12 @@ export default function Admin() {
 
   return (
     <>
-
     <h1>
-      oi    
-      {data == !null && data.map((item: any) => (
+      {data !== null && data.map((item: any) => (
           <h1 className="text-black" key={item.id}>teste{item.name}</h1>
       ))}
     </h1>
+    
     <div className="w-3/6 flex justify-center items-center h-screen">
     <form className="max-w-md mx-auto">
       <div className="relative z-0 w-full mb-5 group">
