@@ -1,26 +1,41 @@
 "use client";
-import React from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import useFetch from "@/useHook/UseFetch";
 import { useEffect } from "react";
 
 export default function LoginPage() {
 
   const { data, error, request } = useFetch();
+  const [email, setEmail] = useState('');
 
+  const handleChangeEmail = (event: any) => {
+    setEmail(event.target.value)
+  }
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    console.log('Email digitado:', email);
+  };
+  
   useEffect(() => {
     request({
-      url: 'https://commerce-api-mte6.onrender.com'
+      url: 'https://commerce-api-mte6.onrender.com',
+      method: 'POST'
     });
   }, [request]);
 
-  console.log(data)
   return (
     <div className="flex">
       <div className="w-full  bg-slate-100 flex items-center justify-center">
         <div className="bg-white p-8 w-96 shadow-2xl">
           <h2 className="text-2xl font-semibold mb-4 text-slate-950">Faça login</h2>
+          <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-600 text-sm font-medium mb-2">
+            <label 
+            htmlFor="email" 
+            className="block text-gray-600 text-sm font-medium mb-2"
+            onChange={handleChangeEmail}
+            >
               Email
             </label>
             <input
@@ -52,6 +67,7 @@ export default function LoginPage() {
               Esqueceu sua senha?
             </a>
           </div>
+          </form>
         </div>
       </div>
     </div>
