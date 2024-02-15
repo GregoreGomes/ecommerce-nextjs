@@ -1,28 +1,39 @@
 "use client";
-import React, { useState, ChangeEvent } from 'react';
-import useFetch from "@/useHook/UseFetch";
-import { useEffect } from "react";
+import React, { useEffect, useState } from 'react';
+import { auth, database } from '@/firebase/firebase';
+import { redirect } from 'next/navigation';
+
+import {
+  useSignInWithEmailAndPassword
+} from "react-firebase-hooks/auth"
 
 export default function LoginPage() {
-
-  const { data, error, request } = useFetch();
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const [
+    SignInUserWithEmailAndPassword,
+    user,
+    loading,
+    error
+  ] = useSignInWithEmailAndPassword(auth);
 
-  const handleChangeEmail = (event: any) => {
-    setEmail(event.target.value)
-  }
-
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('Email digitado:', email);
+    SignInUserWithEmailAndPassword(email, password)
   };
-  
+
   useEffect(() => {
-    request({
-      url: 'https://commerce-api-mte6.onrender.com',
-      method: 'POST'
-    });
-  }, [request]);
+    if (user) {
+      redirect("/"); 
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (error) {
+      setLoginError("Email ou senha inválido"); 
+    }
+  }, [error]);
 
   return (
     <div className="flex">
@@ -34,7 +45,6 @@ export default function LoginPage() {
             <label 
             htmlFor="email" 
             className="block text-gray-600 text-sm font-medium mb-2"
-            onChange={handleChangeEmail}
             >
               Email
             </label>
@@ -43,6 +53,8 @@ export default function LoginPage() {
               id="email"
               className="w-full p-2 border rounded"
               placeholder="Seu email"
+              value={email}
+              onChange={(e)=> setEmail(e.target.value) }
             />
           </div>
           <div className="mb-4">
@@ -54,6 +66,8 @@ export default function LoginPage() {
               id="password"
               className="w-full p-2 border rounded"
               placeholder="Sua senha"
+              value={password}
+              onChange={(e)=> setPassword(e.target.value) }
             />
           </div>
           <button
@@ -62,6 +76,7 @@ export default function LoginPage() {
           >
             Login
           </button>
+          {loginError && <div className="text-red-500 mt-2">{loginError}</div>}
           <div className="mt-4 text-center">
             <a href="#" className="text-blue-500 hover:underline">
               Esqueceu sua senha?
@@ -73,5 +88,3 @@ export default function LoginPage() {
     </div>
   );
 };
-
-
