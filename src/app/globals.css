@@ -2,38 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
-
-
-
 .bannerSlide1{
-    background-image: url(../../public/banner1_slider.jpg);
+    background-image: url(../../public/product1.png);
     background-size: cover;
     height: 500px;
+    transition: 1s;
 }
 .bannerSlide2{
-    background-image: url(../../public/banner2_slider.jpg);
+    background-image: url(../../public/product2.png);
     background-size: cover;
     height: 500px;
+    transition: 1s;
 }
 .bannerSlide3{
-    background-image: url(../../public/banner3_slider.jpg);
+    background-image: url(../../public/product3.png);
     background-size: cover;
     height: 500px;
 }
-
-
-
-
 
 
 /* Animation */
+.animaOpacity {
+    animation: animaOpacity 2.6s cubic-bezier(.12,.84,.33,1) forwards;
+}
+@keyframes animaOpacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .animaTranslateY {
     animation: animaTranslateY 0.6s cubic-bezier(.12,.84,.33,1) forwards;
 }
-
 @keyframes animaTranslateY {
     0% {
         opacity: 0;
@@ -58,4 +61,32 @@
         opacity: 1;
         transform: translateX(0px);
     }
+}
+
+.animaSlideIn {
+    animation: animaSlideIn 2s cubic-bezier(.12,.84,.33,1) forwards;
+}
+@keyframes animaSlideIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.6) rotate(30deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Animation Delay */
+
+.delay-1{
+    animation-delay: 0.100s;
+}
+
+.delay-2{
+    animation-delay: 0.300s;
+}
+
+.delay-3{
+    animation-delay: 0.500s;
 }

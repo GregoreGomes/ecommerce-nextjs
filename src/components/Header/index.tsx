@@ -1,76 +1,26 @@
-import Link from 'next/link';
-import { useState } from 'react';
+import React from 'react';
+import CartIcon from '../Icons/cart/index';
+import Image from 'next/image';
+import Logo from '../../../public/logo.png';
 
-export default function Header() {
-  const [hoveredItem, setHoveredItem] = useState(null);
-
+const Header = () => {
   return (
-    <header className="bg-white text-black shadow-md py-8 px-16 flex justify-between items-center  w-full">
-
+    <header className="bg-gray-200 p-10 px-24 flex justify-between items-center">
       <div className="flex items-center">
-        <span className="font-bold text-lg">MyWebsite</span>
+        <a href="#" className="mr-4">Home</a>
+        <a href="#" className="mr-4">About</a>
       </div>
-
-      <nav>
-        <ul className="flex space-x-4">
-          <li>
-            <Link href="/" passHref>
-              <span 
-                className={hoveredItem === 'home' ? 'hovered-link' : ''}
-              >
-                Home
-              </span>
-            </Link>
-          </li>
-          <li>
-            <Link href="/about" passHref>
-              <span 
-                className={hoveredItem === 'about' ? 'hovered-link' : ''}
-              >
-                About
-              </span>
-            </Link>
-          </li>
-        </ul>
-      </nav>
-
-      <nav>
-        <ul className="flex space-x-4 gap-6">
-          <li>
-            <Link href="/login" passHref>
-              <span 
-                className={hoveredItem === 'login' ? 'hovered-link' : ''}
-              >
-                Login
-              </span>
-            </Link>
-          </li>
-          <li>
-            <Link href="/cart" passHref>
-              <span 
-                className={hoveredItem === 'cart' ? 'hovered-link' : ''}
-              >
-                Cart
-              </span>
-            </Link>
-          </li>
-        </ul>
-      </nav>
       
-      <style jsx>{`
-        .hovered-link {
-          position: relative;
-        }
-        .hovered-link::after {
-          content: '';
-          position: absolute;
-          left: 0;
-          bottom: -2px;
-          width: 100%;
-          height: 2px;
-          background-color: #000;
-        }
-      `}</style>
+      <div className="flex items-center">
+        <Image src={Logo} alt="Logo" width={200} height={40} />
+      </div>
+      
+      <div className="flex items-center gap-5">
+        <a href="#" className="mr-4">Login</a>
+        <CartIcon />
+      </div>
     </header>
   );
-}
+};
+
+export default Header;
