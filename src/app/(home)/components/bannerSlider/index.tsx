@@ -17,7 +17,7 @@ const AutoPlay = () => {
   return (
     <div className="bg-gray-200 flex">
       <div className="w-1/2 flex flex-col justify-center items-start gap-5 pl-32">
-        <h1 className="text-4xl font-bold text-left w-full animaTranslateY">Discover our store</h1>
+        <h1 className="text-4xl syncopate-bold text-left w-full animaTranslateY">Discover our store</h1>
         <h2 className="text-xl text-left w-3/4 animaTranslateY opacity-0 delay-1">Step into our boutique, where style awaits,
         Find fashions finest, trends that captivate,
         From chic apparel to accessories so divine,
