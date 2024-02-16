@@ -8,7 +8,21 @@
 
 
 
-
+.bannerSlide1{
+    background-image: url(../../public/banner1_slider.jpg);
+    background-size: cover;
+    height: 500px;
+}
+.bannerSlide2{
+    background-image: url(../../public/banner2_slider.jpg);
+    background-size: cover;
+    height: 500px;
+}
+.bannerSlide3{
+    background-image: url(../../public/banner3_slider.jpg);
+    background-size: cover;
+    height: 500px;
+}
 
 
 

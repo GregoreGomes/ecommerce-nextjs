@@ -14,9 +14,9 @@ export default function Login() {
   };
 
   return (
-    <>
+    <div className='bg-gray-300 h-screen'>
       <Header />
-      <div className="h-screen bg-gray-300 flex flex-col justify-center items-center">
+      <div className=" m-32  flex flex-col justify-center items-center">
         {showLogin ? <LoginPage /> : <RegisterPage onRegisterSuccess={handleRegisterSuccess} />}
         <button
           onClick={() => setShowLogin(!showLogin)}
@@ -25,6 +25,6 @@ export default function Login() {
           {buttonText}
         </button>
       </div>
-    </>
+    </div>
   );
 }

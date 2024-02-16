@@ -5,7 +5,7 @@ export default function Header() {
   const [hoveredItem, setHoveredItem] = useState(null);
 
   return (
-    <header className="bg-white text-black shadow-md py-8 px-16 flex justify-between items-center absolute w-full">
+    <header className="bg-white text-black shadow-md py-8 px-16 flex justify-between items-center  w-full">
 
       <div className="flex items-center">
         <span className="font-bold text-lg">MyWebsite</span>
@@ -17,8 +17,6 @@ export default function Header() {
             <Link href="/" passHref>
               <span 
                 className={hoveredItem === 'home' ? 'hovered-link' : ''}
-                onMouseEnter={() => setHoveredItem('home')}
-                onMouseLeave={() => setHoveredItem(null)}
               >
                 Home
               </span>
@@ -28,8 +26,6 @@ export default function Header() {
             <Link href="/about" passHref>
               <span 
                 className={hoveredItem === 'about' ? 'hovered-link' : ''}
-                onMouseEnter={() => setHoveredItem('about')}
-                onMouseLeave={() => setHoveredItem(null)}
               >
                 About
               </span>
@@ -44,8 +40,6 @@ export default function Header() {
             <Link href="/login" passHref>
               <span 
                 className={hoveredItem === 'login' ? 'hovered-link' : ''}
-                onMouseEnter={() => setHoveredItem('login')}
-                onMouseLeave={() => setHoveredItem(null)}
               >
                 Login
               </span>
@@ -55,8 +49,6 @@ export default function Header() {
             <Link href="/cart" passHref>
               <span 
                 className={hoveredItem === 'cart' ? 'hovered-link' : ''}
-                onMouseEnter={() => setHoveredItem('cart')}
-                onMouseLeave={() => setHoveredItem(null)}
               >
                 Cart
               </span>
