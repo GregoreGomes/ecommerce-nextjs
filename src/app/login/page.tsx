@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from 'react';
 import Header from '../../components/Header';
 import LoginPage from './components/loginPage/index';
@@ -10,20 +9,22 @@ export default function Login() {
 
   const buttonText = showLogin ? "Não tem uma conta? Crie agora." : "Voltar para Login";
 
+  const handleRegisterSuccess = () => {
+    setShowLogin(true);
+  };
+
   return (
     <>
-    <Header />
-    <div className="h-screen bg-slate-100 flex flex-col justify-center items-center">
-      {showLogin ? <LoginPage /> : <RegisterPage />}
-      <button
-        onClick={() => setShowLogin(!showLogin)}
-        className={` text-slate-950 p-4 `}
-      >
-        {buttonText}
-      </button>
-
-      
-    </div>
+      <Header />
+      <div className="h-screen bg-gray-300 flex flex-col justify-center items-center">
+        {showLogin ? <LoginPage /> : <RegisterPage onRegisterSuccess={handleRegisterSuccess} />}
+        <button
+          onClick={() => setShowLogin(!showLogin)}
+          className={`text-slate-950 p-4`}
+        >
+          {buttonText}
+        </button>
+      </div>
     </>
   );
 }

@@ -2,18 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-.animAlert {
-    animation: alert 0.3s ease-out forwards;
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Animation */
+.animaTranslateY {
+    animation: animaTranslateY 0.6s cubic-bezier(.12,.84,.33,1) forwards;
 }
 
-@keyframes alert {
+@keyframes animaTranslateY {
     0% {
         opacity: 0;
-        transform: scale(0.7);
+        transform: translateY(60px);
     }
     100% {
         opacity: 1;
-        transform: scale(1);
+        transform: translateY(0px);
     }
 }
 
+.animaTranslateX {
+    animation: animaTranslateX 1s cubic-bezier(.12,.84,.33,1) forwards;
+}
+
+@keyframes animaTranslateX {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
