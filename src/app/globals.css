@@ -4,6 +4,22 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap');
 
+body{
+    background-color: #e5e7eb;
+}
+/* scroll  */
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #e5e7eb;
+  }
+::-webkit-scrollbar-thumb {
+    background-color: black;
+    border: 3px solid #e5e7eb;
+  }
+
+
+  /* Fonts */
 .syncopate-regular {
     font-family: "Syncopate", sans-serif;
     font-weight: 200;
@@ -16,23 +32,6 @@
     font-style: normal;
   }
   
-.bannerSlide1{
-    background-image: url(../../public/product1.png);
-    background-size: cover;
-    height: 500px;
-    transition: 1s;
-}
-.bannerSlide2{
-    background-image: url(../../public/product2.png);
-    background-size: cover;
-    height: 500px;
-    transition: 1s;
-}
-.bannerSlide3{
-    background-image: url(../../public/product3.png);
-    background-size: cover;
-    height: 500px;
-}
 
 
 /* Animation */

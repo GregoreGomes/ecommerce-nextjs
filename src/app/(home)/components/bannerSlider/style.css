@@ -1,0 +1,18 @@
+.bannerSlide1{
+    background-image: url(../../../../../public/product1.png);
+    background-size: cover;
+    height: 500px;
+    transition: 1s;
+}
+.bannerSlide2{
+    background-image: url(../../../../../public/product2.png);
+    background-size: cover;
+    height: 500px;
+    transition: 1s;
+}
+.bannerSlide3{
+    background-image: url(../../../../../public/product3.png);
+    background-size: cover;
+    height: 500px;
+    transition: 1s;
+}

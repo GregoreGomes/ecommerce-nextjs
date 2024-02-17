@@ -1,0 +1,28 @@
+.nav-link {
+    position: relative;
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: rgb(0, 0, 0);
+    transition: width 0.2s ease-out;
+    animation: line 0.3s ease-out 1 normal forwards;
+  }
+
+  @keyframes line {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  
+  
