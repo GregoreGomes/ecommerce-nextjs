@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import CartIcon from '../Icons/cart/index';
+import { CartIcon } from '../Icons/cart/index';
 import Image from 'next/image';
 import Logo from '../../../public/logo.png';
 import './styles.css';

@@ -1,11 +1,13 @@
 'use client'
 
-import { ref } from 'firebase/database';
+import {  ref, set, remove  } from 'firebase/database';
 import { useObject } from 'react-firebase-hooks/database';
 import { database } from '@/firebase/firebase';
 import { useEffect, useState } from 'react';
+import { TrashIcon } from '@/components/Icons/cart';
 
 interface PropsDataProducts {
+  id: string;
   codigoProduto: string;
   descriptionProduct: string;
   titleProduct: string;
@@ -13,43 +15,75 @@ interface PropsDataProducts {
 }
 
 export default function TableProduct() {
-  
-  const [snapshot, loading, error] = useObject(ref(database, 'Produtos'));
+
+  const [ snapshot, loading, error ] = useObject(ref(database, 'Produtos'));
   const [ data, setData ] = useState<PropsDataProducts[]>([]);
+
+  function deleteProduct(id: string) {
+    const productRef = ref(database, `Produtos/`);
+
+    console.log(productRef)
+
+    remove(productRef)
+      .then(() => {
+        console.log('Product deleted successfully');
+      })
+      .catch((error) => {
+        console.error('Error deleting product:', error);
+      });
+  }
   
   useEffect(() => {
     if (snapshot && snapshot.exists() && snapshot.hasChildren()) {
       
       const tempChildDataArray: PropsDataProducts[] = [];
-    
+      
       snapshot.forEach((childSnapshot) => {
-          tempChildDataArray.push(childSnapshot.val());
+        tempChildDataArray.push(childSnapshot.val());
       });
       setData(tempChildDataArray);
     }
-  }, [snapshot]);
-
+  }, [ snapshot ]);
+  
   console.log(data)
     
-
   return (
     <>
-    {data && data.map((e, index) => (
+    
       <>
-        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex flex-col">
-          {e.titleProduct}
-        </th>
-        <td className="px-6 py-4">
-          {e.descriptionProduct}
-        </td>
-        <td className="px-6 py-4">
-          {e.titleProduct}
-        </td>
-        <td className="px-6 py-4">
-          ${e.valueProduct}
-        </td>
+        <div className="rounded-lg border border-gray-200 h-full bg-white p-10 relative w-full">
+          <div className="overflow-x-auto rounded-t-lg">
+            <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+              <thead className="ltr:text-left rtl:text-left text-left">
+                <tr>
+                  <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Código do Produto</th>
+                  <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Descrição do Produto</th>
+                  <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Produto</th>
+                  <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Valor do produto</th>
+                </tr>
+              </thead>
+
+              <tbody className="divide-y divide-gray-200">
+              {data && data.map((e, index) => (
+                <>
+                <tr>
+                  <td className="whitespace-nowrap px-4 py-5 font-medium text-gray-900">{e.codigoProduto}</td>
+                  <td className="whitespace-nowrap px-4 py-5 text-gray-700">{e.descriptionProduct}</td>
+                  <td className="whitespace-nowrap px-4 py-5 text-gray-700">{e.titleProduct}</td>
+                  <td className="whitespace-nowrap px-4 py-5 text-gray-700">R$ {e.valueProduct}</td>
+                  <div className='py-5 '>
+                   <TrashIcon onClick={() => deleteProduct(e.codigoProduto)} />
+                  </div>
+                </tr>
+                </>
+                 ))}
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
       </>
-      ))}
+
     </>
 );
 
