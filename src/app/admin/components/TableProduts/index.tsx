@@ -20,26 +20,20 @@ export default function TableProduct() {
   const [ data, setData ] = useState<PropsDataProducts[]>([]);
 
   function deleteProduct(id: string) {
-    const productRef = ref(database, `Produtos/`);
-
-    console.log(productRef)
+    const productRef = ref(database, `Produtos/${id}`);
 
     remove(productRef)
-      .then(() => {
-        console.log('Product deleted successfully');
-      })
-      .catch((error) => {
-        console.error('Error deleting product:', error);
-      });
   }
   
   useEffect(() => {
     if (snapshot && snapshot.exists() && snapshot.hasChildren()) {
-      
       const tempChildDataArray: PropsDataProducts[] = [];
-      
+    
       snapshot.forEach((childSnapshot) => {
-        tempChildDataArray.push(childSnapshot.val());
+        const id = childSnapshot.key;
+        const data = childSnapshot.val();
+        const dataWithId = { ...data, id };
+        tempChildDataArray.push(dataWithId);
       });
       setData(tempChildDataArray);
     }
@@ -72,7 +66,7 @@ export default function TableProduct() {
                   <td className="whitespace-nowrap px-4 py-5 text-gray-700">{e.titleProduct}</td>
                   <td className="whitespace-nowrap px-4 py-5 text-gray-700">R$ {e.valueProduct}</td>
                   <div className='py-5 '>
-                   <TrashIcon onClick={() => deleteProduct(e.codigoProduto)} />
+                   <TrashIcon onClick={() => deleteProduct(e.id)} />
                   </div>
                 </tr>
                 </>
