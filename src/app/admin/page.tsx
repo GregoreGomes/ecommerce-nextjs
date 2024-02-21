@@ -1,6 +1,5 @@
 'use client'
 
-import useFetch from "@/useHook/UseFetch";
 import { useEffect, useState } from "react";
 import { push, ref, set } from "firebase/database";
 import { database } from '@/firebase/firebase';
@@ -102,7 +101,7 @@ export default function Admin() {
           </button>
       </form>
       </div>
-      <div className="flex justify-center items-left flex-col">
+      <div className="flex justify-center items-left flex-col w-full m-14">
         <TableProduct />
       </div>
     </div>
