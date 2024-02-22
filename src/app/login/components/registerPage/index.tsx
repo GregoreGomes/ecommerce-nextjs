@@ -5,6 +5,7 @@ import {
 }from "react-firebase-hooks/auth"
 import {  push, ref, set } from "firebase/database";
 import { useObject } from 'react-firebase-hooks/database';
+import { useSendEmailVerification } from 'react-firebase-hooks/auth';
 
 
 interface RegisterProps {
@@ -70,8 +71,6 @@ const verificationPasswaord = () =>{
     return false;
   }
 }
-
-
   return (
     <div className="flex">
       <div className="w-full bg-slate-100 flex items-center justify-center animaTranslateX">
@@ -133,7 +132,7 @@ const verificationPasswaord = () =>{
             <button
               type="submit"
               className="w-full bg-black text-white p-2 rounded scale-100 ease-out duration-300 disabled:bg-white disabled:scale-90 disabled:text-black disabled:border disabled:border-black"
-              disabled={verificationPasswaord() ? false : true}       
+              disabled={verificationPasswaord() ? false : true}
             >
               Registrar
             </button>
