@@ -5,6 +5,7 @@ import { useObject } from 'react-firebase-hooks/database';
 import { database } from '@/firebase/firebase';
 import { useEffect, useState } from 'react';
 import { TrashIcon } from '@/components/Icons/cart';
+import UploadFile from '../UploadFile';
 
 interface PropsDataProducts {
   id: string;
@@ -38,9 +39,7 @@ export default function TableProduct() {
       setData(tempChildDataArray);
     }
   }, [ snapshot ]);
-  
-  console.log(data)
-    
+
   return (
     <>
     
