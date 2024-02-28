@@ -17,7 +17,6 @@ export default function Login() {
   return (
     <>
     <div className='bg-gray-200 h-screen'>
-      <Header />
       <div className=" m-32  flex flex-col justify-center items-center">
         {showLogin ? <LoginPage /> : <RegisterPage onRegisterSuccess={handleRegisterSuccess} />}
         <button
@@ -28,7 +27,6 @@ export default function Login() {
         </button>
       </div>
     </div>
-    <Footer/>
     </>
   );
 }

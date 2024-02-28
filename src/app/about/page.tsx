@@ -9,10 +9,8 @@ import AboutBanners from './components/aboutBanners';
 export default function Home() {
   return (
     <>
-    <Header />
     <AboutBanners/>
     <AboutText/>
-    <Footer/>
     </>
   );
 }

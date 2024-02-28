@@ -25,9 +25,14 @@ const Header = () => {
     }
   }, []);
 
+  const userAdmin = true;
+  
   return (
     <header className="bg-gray-200 p-10 px-24 flex justify-between items-center">
       <div className="flex items-center">
+        {userAdmin && (
+          <Link href="/admin" className={`mr-8  hover:cursor-pointer ${activeTab === 'Admin' ? 'nav-link' : ''}`}>Admin</Link>
+        )}
         <Link href="/" className={`mr-8  hover:cursor-pointer ${activeTab === 'home' ? 'nav-link' : ''}`}>Home</Link>
         <Link href="/about" className={`hover:cursor-pointer ${activeTab === 'about' ? 'nav-link' : ''}`}>About</Link>
       </div>

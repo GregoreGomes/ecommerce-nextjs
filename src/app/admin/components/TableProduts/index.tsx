@@ -5,7 +5,7 @@ import { useObject } from 'react-firebase-hooks/database';
 import { database } from '@/firebase/firebase';
 import { useEffect, useState } from 'react';
 import { TrashIcon } from '@/components/Icons/cart';
-import UploadFile from '../UploadFile';
+import { DownloadFile } from '../DownloadFile';
 
 interface PropsDataProducts {
   id: string;
@@ -13,6 +13,7 @@ interface PropsDataProducts {
   descriptionProduct: string;
   titleProduct: string;
   valueProduct: string;
+  imageURL: string;
 }
 
 export default function TableProduct() {
@@ -64,8 +65,10 @@ export default function TableProduct() {
                   <td className="whitespace-nowrap px-4 py-5 text-gray-700">{e.descriptionProduct}</td>
                   <td className="whitespace-nowrap px-4 py-5 text-gray-700">{e.titleProduct}</td>
                   <td className="whitespace-nowrap px-4 py-5 text-gray-700">R$ {e.valueProduct}</td>
-                  <div className='py-5 '>
-                   <TrashIcon onClick={() => deleteProduct(e.id)} />
+                  <td className="whitespace-nowrap px-4 text-gray-700 flex justify-center"><DownloadFile nameFile={e.titleProduct}/></td>
+                  <td className="whitespace-nowrap px-4 py-5 text-gray-700">R$ {e.imageURL}</td>
+                  <div className='py-5'>
+                    <TrashIcon onClick={() => deleteProduct(e.id)} />
                   </div>
                 </tr>
                 </>

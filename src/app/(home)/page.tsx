@@ -8,9 +8,7 @@ import BannerSlider from './components/bannerSlider';
 export default function Home() {
   return (
     <>
-    <Header />
     <BannerSlider />
-    <Footer/>
     </>
   );
 }

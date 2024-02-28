@@ -1,29 +1,25 @@
-'use client'
-
-import { useEffect, useState } from 'react';
-import { ref as storageRef } from 'firebase/storage';
-import { useDownloadURL  } from 'react-firebase-hooks/storage';
+import { getStorage, ref as storageRef } from 'firebase/storage';
+import { useDownloadURL } from 'react-firebase-hooks/storage';
 import { storage } from '@/firebase/firebase';
+import Image from 'next/image';
 
-interface UploadProps { 
-  imageName: string
+interface DownloadPropos {
+  nameFile: string;
 }
 
-export default function DownloadFile( { imageName }: UploadProps ): any {
+export const DownloadFile = ( { nameFile }: DownloadPropos ) => {
 
-  const [ value, loading, error ] = useDownloadURL(storageRef(storage, `produtos/${imageName}`));  
-  const [ urlImage, setUrlImage ] = useState<string>()
-
-  useEffect(() => {
-    if(!loading) {
-      setUrlImage(value)
-      console.log(urlImage)
-    }
-  }, [ imageName ]);
+  const [value, loading, error] = useDownloadURL(storageRef(storage, `produtos/${nameFile}`));
 
   return (
-    <>
-    <img src={value} alt="" />
-    </>
+    <div>
+      <p>
+        {error && <strong>Produto sem imagem</strong>}
+        {loading && <span>Download...</span>}
+        {!loading && value && (
+          <Image src={value} width={100} height={100} alt={value} />
+        )}
+      </p>
+    </div>
   );
-}
+};
